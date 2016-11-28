@@ -4,14 +4,15 @@ GEM
     ast (2.3.0)
     parser (2.3.1.4)
       ast (~> 2.2)
-    rainbow (2.1.0)
+    rake (11.3.0)
     ruby-lint (2.3.0)
       parser (~> 2.2)
       slop (~> 3.4, >= 3.4.7)
     sass (3.4.22)
-    scss-lint (0.38.0)
-      rainbow (~> 2.0)
-      sass (~> 3.4.1)
+    scss_lint (0.50.2)
+      rake (>= 0.9, < 12)
+      sass (~> 3.4.20)
+    scss_lint_reporter_checkstyle (0.2.0)
     slop (3.6.0)
 
 PLATFORMS
@@ -19,7 +20,8 @@ PLATFORMS
 
 DEPENDENCIES
   ruby-lint
-  scss-lint
+  scss_lint
+  scss_lint_reporter_checkstyle
 
 BUNDLED WITH
-   1.10.6
+   1.13.6
