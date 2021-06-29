@@ -23,9 +23,12 @@ Temporary Items
 
 .svn/
 .hg/
+.vscode
 
 TAGS
 .tags*
+
+.envrc
 
 *~
 \#*\#
