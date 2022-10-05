@@ -14,19 +14,19 @@
 	st = status
 	graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
 	fix = commit --amend
+  amend = commit --amend
 
-    # http://gggritso.com/human-git-aliases
-    branches = branch -a
-    tags = tag
-    stashes = stash list
+  # http://gggritso.com/human-git-aliases
+  branches = branch -a
+  tags = tag
+  stashes = stash list
 
-    unstage = reset -q HEAD --
-    discard = checkout --
-    uncommit = reset --mixed HEAD~
-    amend = commit --amend
-    nevermind = !git reset --hard HEAD && git clean -d -f
+  unstage = reset -q HEAD --
+  discard = checkout --
+  uncommit = reset --mixed HEAD~
+  nevermind = !git reset --hard HEAD && git clean -d -f
 
-    precommit = diff --cached --diff-algorithm=minimal -w
+  precommit = diff --cached --diff-algorithm=minimal -w
 [push]
 	default = simple
 [branch]
