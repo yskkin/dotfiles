@@ -37,6 +37,7 @@
 	date = local
 [rebase]
 	autosquash = true
+	autostash=true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
