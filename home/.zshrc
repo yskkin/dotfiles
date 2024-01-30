@@ -62,7 +62,6 @@ fi
 
 export ZSH="$HOME/.local/share/sheldon/repos/github.com/ohmyzsh/ohmyzsh"
 plugins=(
-  autojump
   brew
   bundler
   dircycle
@@ -80,6 +79,7 @@ plugins=(
   rbenv
   ruby
   urltools
+  z
 )
 ZSH_THEME="robbyrussell"
 eval $(sheldon source)
