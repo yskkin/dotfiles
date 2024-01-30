@@ -37,15 +37,19 @@ if ! which brew &> /dev/null; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-if ! which sheldon &> /dev/null; then
-  echo "install shelldon..."
-  brew install sheldon
-  yes | sheldon init
+if ! which homeshick &> /dev/null; then
+  echo "install homeshick..."
+  brew install homeshick
+fi
+export HOMESHICK_DIR="$(brew --prefix)/opt/homeshick"
+source "$HOMESHICK_DIR/homeshick.sh"
+if ! (homeshick list | grep -q "yskkin/dotfiles"); then
+  echo "clone yskkin/dotfiles..."
+  homeshick clone git@github.com:yskkin/dotfiles.git
 fi
 
 safe_source $HOME/.zshrc.private
 safe_source "$(brew --prefix)/etc/profile.d/z.sh"
-safe_source "$(brew --prefix)/opt/homeshick/homeshick.sh"
 
 if which direnv &> /dev/null; then
     eval "$(direnv hook zsh)"
