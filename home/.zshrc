@@ -56,7 +56,8 @@ if which direnv &> /dev/null; then
 fi
 
 
-if (! test -d ~/.emacs.d || git -C ~/.emacs.d status &> /dev/null); then
+if (! test -d ~/.emacs.d || ! git -C ~/.emacs.d status --porcelain &> /dev/null); then
+    echo "Cloning spacemacs..."
     git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 fi
 
