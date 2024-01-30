@@ -48,6 +48,8 @@ if ! (homeshick list | grep -q "yskkin/dotfiles"); then
   homeshick clone git@github.com:yskkin/dotfiles.git
 fi
 
+brew bundle --file ~/Brewfile
+
 safe_source $HOME/.zshrc.private
 safe_source "$(brew --prefix)/etc/profile.d/z.sh"
 
