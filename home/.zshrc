@@ -4,6 +4,34 @@ safe_source() {
     fi
 }
 
+setup_ssh() {
+  # https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
+  local keyfile=$HOME/.ssh/id_ed25519
+  if [[ ! -f $keyfile ]]; then
+    ssh-keygen -q -t ed25519 -N '' -f $keyfile -C "yskkin@gmail.com"
+  fi
+  if [[ -n $SSH_AGENT_PID ]]; then
+    eval "$(ssh-agent -s)"
+  fi
+
+  if ! grep -q "github.com" ~/.ssh/config; then
+    cat << EOF >> ~/.ssh/config
+Host github.com
+  AddKeysToAgent yes
+  IdentityFile $keyfile
+EOF
+  fi
+  # if ! (ssh-add -l | grep -q "yskkin@gmail.com"); then
+  #   ssh-add $keyfile
+  # fi
+
+  if ! (curl -s https://github.com/yskkin.keys | grep -q "$(cat $keyfile.pub | cut -d' ' -f 1,2)"); then
+    echo "Add your SSH key $keyfile.pub via https://github.com/settings/keys"
+  fi
+}
+
+setup_ssh
+
 if ! which brew &> /dev/null; then
   echo "install Homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
