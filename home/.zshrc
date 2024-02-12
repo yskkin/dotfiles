@@ -51,7 +51,7 @@ fi
 ls $HOME/Brewfile* | grep -v lock | xargs cat | brew bundle --file=-
 
 safe_source $HOME/.zshrc.private
-safe_source "$(brew --prefix)/etc/profile.d/z.sh"
+safe_source "$(brew --prefix)/etc/profile.d/*"
 
 if which direnv &> /dev/null; then
     eval "$(direnv hook zsh)"
@@ -84,5 +84,6 @@ plugins=(
   urltools
   z
 )
-ZSH_THEME="robbyrussell"
-eval $(sheldon source)
+ZSH_THEME=""
+eval "$(sheldon source)"
+eval "$(starship init zsh)"
