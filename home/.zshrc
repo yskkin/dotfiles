@@ -74,6 +74,7 @@ plugins=(
   git-flow
   github
   macos
+  nodenv
   npm
   perl
   pip
