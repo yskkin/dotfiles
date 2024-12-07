@@ -607,6 +607,12 @@ before packages are loaded."
   (setq-default magit-auto-revert-mode t)
   (setq-default typescript-indent-level 2)
 
+
+  (setq org-journal-dir "~/org/journal"
+        org-journal-file-format "%Y-%m-%d.org"
+        org-journal-date-format "%Y-%m-%d (%A)"
+        org-agenda-files '("~/org" "~/org/gtasks" "~/org/journal"))
+
   (define-key evil-insert-state-map (kbd "M-¥") [92])
   (define-key evil-ex-search-keymap (kbd "M-¥") [92])
   (define-key evil-ex-completion-map (kbd "M-¥") [92]))
