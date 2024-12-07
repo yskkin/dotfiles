@@ -613,6 +613,15 @@ before packages are loaded."
   (setq-default magit-auto-revert-mode t)
   (setq-default typescript-indent-level 2)
 
+  (setq bitwarden-automatic-unlock
+        (let* ((auth-sources '(macos-keychain-internet))
+               (matches (auth-source-search :user "yskkin@gmail.com"
+                                            :host "bitwarden.com"
+                                            :require '(:secret)
+                                            :max 1))
+               (entry (nth 0 matches)))
+          (plist-get entry :secret)))
+  (bitwarden-auth-source-enable)
 
   (setq org-journal-dir "~/org/journal"
         org-journal-file-format "%Y-%m-%d.org"
