@@ -619,6 +619,13 @@ before packages are loaded."
         org-journal-date-format "%Y-%m-%d (%A)"
         org-agenda-files '("~/org" "~/org/gtasks" "~/org/journal"))
 
+  (with-eval-after-load 'copilot
+    (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+    (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+    (define-key copilot-completion-map (kbd "C-TAB") 'copilot-accept-completion-by-word)
+    (define-key copilot-completion-map (kbd "C-<tab>") 'copilot-accept-completion-by-word))
+  (add-hook 'prog-mode-hook 'copilot-mode)
+
   (define-key evil-insert-state-map (kbd "M-¥") [92])
   (define-key evil-ex-search-keymap (kbd "M-¥") [92])
   (define-key evil-ex-completion-map (kbd "M-¥") [92]))
