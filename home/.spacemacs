@@ -72,7 +72,6 @@ This function should only modify configuration layer settings."
      (version-control :variables version-control-global-margin t)
      yaml)
 
-   dotspacemacs-additional-packages '((evil-magit :location (recipe :fetcher github :repo "emacs-evil/evil-magit")) forge)
    ;; List of additional packages that will be installed without being wrapped
    ;; in a layer (generally the packages are installed only and should still be
    ;; loaded using load/require/use-package in the user-config section below in
@@ -81,6 +80,13 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
+   dotspacemacs-additional-packages
+   '(
+     (bitwarden :location (recipe :fetcher github :repo "yskkin/emacs-bitwarden" :branch "feat/custom_field"))
+     ddskk
+     (org-gtasks :location (recipe :fetcher sourcehut :repo "jmasson/org-gtasks"))
+     request-deferred)
+
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
 
