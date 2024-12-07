@@ -635,6 +635,18 @@ before packages are loaded."
     (define-key copilot-completion-map (kbd "C-<tab>") 'copilot-accept-completion-by-word))
   (add-hook 'prog-mode-hook 'copilot-mode)
 
+  (let* ((user "yskkin@gmail.com")
+         (matches (auth-source-search :host "emacs-google" :user user :max 1))
+         (entry (nth 0 matches)))
+    (with-eval-after-load 'org-gtasks
+      (org-gtasks-register-account :name "yskkin"
+                                   :directory "~/org/gtasks/"
+                                   :login user
+                                   :client-id (funcall (plist-get entry :field_client_id))
+                                   :client-secret (funcall (plist-get entry :field_client_secret))
+                                   ))
+    )
+
   (define-key evil-insert-state-map (kbd "M-¥") [92])
   (define-key evil-ex-search-keymap (kbd "M-¥") [92])
   (define-key evil-ex-completion-map (kbd "M-¥") [92])
