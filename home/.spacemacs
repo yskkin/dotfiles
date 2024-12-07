@@ -33,11 +33,6 @@ This function should only modify configuration layer settings."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     html
-     sql
-     rust
-     javascript
-     yaml
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -45,28 +40,38 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      auto-completion
      better-defaults
-     emacs-lisp
+     csv
+     (emacs-lisp :variables emacs-lisp-format-on-save nil)
      git
-     github
+     github-copilot
+     html
      ivy
+     javascript
+     lsp
      markdown
-     org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     spell-checking
-     syntax-checking
-     (version-control :variables version-control-global-margin t)
-     typescript
+     (org :variables
+          org-enable-org-journal-support t)
+     (osx :variables osx-swap-option-and-command t)
      (ruby :variables
            enh-ruby-add-encoding-comment-on-save nil
            ruby-insert-encoding-magic-comment nil
            ruby-test-runner 'rspec)
+     rust
+     ;; (shell :variables
+     ;;        shell-default-height 30
+     ;;        shell-default-position 'bottom)
+     ;; spell-checking
+     sql
+     syntax-checking
+     tide
      (treemacs :variables
                treemacs-use-follow-mode t
                treemacs-use-filewatch-mode t
                treemacs-use-git-mode 'deferred)
-     )
+     typescript
+     (version-control :variables version-control-global-margin t)
+     yaml)
+
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
