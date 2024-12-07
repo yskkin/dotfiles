@@ -628,7 +628,9 @@ before packages are loaded."
 
   (define-key evil-insert-state-map (kbd "M-¥") [92])
   (define-key evil-ex-search-keymap (kbd "M-¥") [92])
-  (define-key evil-ex-completion-map (kbd "M-¥") [92]))
+  (define-key evil-ex-completion-map (kbd "M-¥") [92])
+  (keymap-global-set "C-x C-j" 'skk-mode)
+  (setq skk-jisyo-code 'utf-8))
 
 
 ;; Do not write anything past this comment. This is where Emacs will
