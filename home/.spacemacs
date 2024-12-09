@@ -85,6 +85,7 @@ This function should only modify configuration layer settings."
      (bitwarden :location (recipe :fetcher github :repo "yskkin/emacs-bitwarden" :branch "feat/custom_field"))
      ddskk
      (org-gtasks :location (recipe :fetcher sourcehut :repo "jmasson/org-gtasks"))
+     ;; for org-gtasks
      request-deferred)
 
    ;; A list of packages that cannot be updated.
@@ -635,17 +636,23 @@ before packages are loaded."
     (define-key copilot-completion-map (kbd "C-<tab>") 'copilot-accept-completion-by-word))
   (add-hook 'prog-mode-hook 'copilot-mode)
 
-  (let* ((user "yskkin@gmail.com")
-         (matches (auth-source-search :host "emacs-google" :user user :max 1))
-         (entry (nth 0 matches)))
-    (with-eval-after-load 'org-gtasks
-      (org-gtasks-register-account :name "yskkin"
-                                   :directory "~/org/gtasks/"
-                                   :login user
-                                   :client-id (funcall (plist-get entry :field_client_id))
-                                   :client-secret (funcall (plist-get entry :field_client_secret))
-                                   ))
-    )
+  (async-start
+   `(lambda ()
+      ,(async-inject-variables "load-path")
+      (require 'auth-source)
+      (require 'bitwarden)
+      ,(async-inject-variables "bitwarden-automatic-unlock")
+      (bitwarden-auth-source-enable)
+      (auth-source-search :host "emacs-google" :user "yskkin@gmail.com" :max 1))
+   (lambda (matches)
+     (let* ((user "yskkin@gmail.com")
+            (entry (nth 0 matches)))
+       (with-eval-after-load 'org-gtasks
+         (org-gtasks-register-account :name "yskkin"
+                                      :directory "~/org/gtasks/"
+                                      :login user
+                                      :client-id (funcall (plist-get entry :field_client_id))
+                                      :client-secret (funcall (plist-get entry :field_client_secret)))))))
 
   (define-key evil-insert-state-map (kbd "M-¥") [92])
   (define-key evil-ex-search-keymap (kbd "M-¥") [92])
