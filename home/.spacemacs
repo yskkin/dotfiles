@@ -84,6 +84,7 @@ This function should only modify configuration layer settings."
    '(
      (bitwarden :location (recipe :fetcher github :repo "yskkin/emacs-bitwarden" :branch "feat/custom_field"))
      ddskk
+     org-gcal
      (org-gtasks :location (recipe :fetcher sourcehut :repo "jmasson/org-gtasks"))
      ;; for org-gtasks
      request-deferred)
@@ -627,7 +628,7 @@ before packages are loaded."
   (setq org-journal-dir "~/org/journal"
         org-journal-file-format "%Y-%m-%d.org"
         org-journal-date-format "%Y-%m-%d (%A)"
-        org-agenda-files '("~/org" "~/org/gtasks" "~/org/journal"))
+        org-agenda-files '("~/org" "~/org/gtasks" "~/org/journal" "~/org/gcals"))
 
   (with-eval-after-load 'copilot
     (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
@@ -652,7 +653,11 @@ before packages are loaded."
                                       :directory "~/org/gtasks/"
                                       :login user
                                       :client-id (funcall (plist-get entry :field_client_id))
-                                      :client-secret (funcall (plist-get entry :field_client_secret)))))))
+                                      :client-secret (funcall (plist-get entry :field_client_secret))))
+       (setq epg-pinentry-mode 'loopback ; https://github.com/kidd/org-gcal.el/issues/236#issuecomment-1646443501
+             org-gcal-client-id (funcall (plist-get entry :field_client_id))
+             org-gcal-client-secret (funcall (plist-get entry :field_client_secret))
+             org-gcal-file-alist '(("yskkin@gmail.com" . "~/org/gcals/cal_yskkin.org"))))))
 
   (define-key evil-insert-state-map (kbd "M-¥") [92])
   (define-key evil-ex-search-keymap (kbd "M-¥") [92])
