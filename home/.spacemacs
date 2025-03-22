@@ -47,7 +47,9 @@ This function should only modify configuration layer settings."
      html
      ivy
      javascript
-     lsp
+     (lsp :variables
+          lsp-lens-enable t
+          lsp-ui-remap-xref-keybindings t)
      markdown
      (org :variables
           org-enable-org-journal-support t)
@@ -56,10 +58,12 @@ This function should only modify configuration layer settings."
            enh-ruby-add-encoding-comment-on-save nil
            ruby-insert-encoding-magic-comment nil
            ruby-test-runner 'rspec)
+     ruby-on-rails
      rust
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
+     (shell :variables
+            shell-default-height 25
+            shell-default-position 'bottom
+            shell-default-shell 'multi-vterm)
      ;; spell-checking
      sql
      syntax-checking
