@@ -634,7 +634,9 @@ before packages are loaded."
   (setq org-journal-dir "~/org/journal"
         org-journal-file-format "%Y-%m-%d.org"
         org-journal-date-format "%Y-%m-%d (%A)"
-        org-agenda-files '("~/org" "~/org/gtasks" "~/org/journal" "~/org/gcals"))
+        org-agenda-files '("~/org" "~/org/gtasks" "~/org/journal" "~/org/gcals")
+        org-use-fast-todo-selection 'expert
+        org-todo-keywords '((sequence "TODO(t)" "DOING(!)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
 
   (with-eval-after-load 'copilot
     (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
