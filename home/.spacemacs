@@ -606,6 +606,8 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  ;; https://github.com/antonj/scss-mode/pull/42
+  (require 'flymake-proc)
   (setq-default evil-search-module 'evil-search))
 
 (defun dotspacemacs/user-config ()
