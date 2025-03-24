@@ -90,6 +90,7 @@ This function should only modify configuration layer settings."
      ddskk
      org-gcal
      (org-gtasks :location (recipe :fetcher sourcehut :repo "jmasson/org-gtasks"))
+     todoist
      ;; for org-gtasks
      request-deferred)
 
@@ -644,6 +645,12 @@ before packages are loaded."
     (define-key copilot-completion-map (kbd "C-TAB") 'copilot-accept-completion-by-word)
     (define-key copilot-completion-map (kbd "C-<tab>") 'copilot-accept-completion-by-word))
   (add-hook 'prog-mode-hook 'copilot-mode)
+  (setq todoist-token
+        (let* ((auth-sources '(macos-keychain-generic))
+               (matches (auth-source-search :user "yskkin@gmail.com" :port "todoist_api_key" :require '(:secret) :max 1))
+               (entry (nth 0 matches)))
+          (funcall (plist-get entry :secret)))
+        todoist-backing-buffer "~/org/todoist.org")
 
   (async-start
    `(lambda ()
