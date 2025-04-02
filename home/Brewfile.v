@@ -19,7 +19,6 @@ brew "puma/puma/puma-dev"
 brew "auth0/auth0-cli/auth0"
 brew "azure/functions/azure-functions-core-tools@4"
 
-cask "around"
 cask "mediainfo"
 cask "mkvtoolnix"
 cask "ngrok"
