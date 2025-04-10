@@ -46,11 +46,13 @@ This function should only modify configuration layer settings."
      github-copilot
      html
      ivy
+     japanese
      javascript
      (lsp :variables
           lsp-lens-enable t
           lsp-ui-remap-xref-keybindings t)
      markdown
+     (node :variables node-add-modules-path t)
      (org :variables
           org-enable-org-journal-support t)
      (osx :variables osx-swap-option-and-command t)
@@ -74,6 +76,7 @@ This function should only modify configuration layer settings."
                treemacs-use-git-mode 'deferred)
      typescript
      (version-control :variables version-control-global-margin t)
+     (vue :variables vue-backend 'lsp)
      yaml)
 
    ;; List of additional packages that will be installed without being wrapped
@@ -88,7 +91,6 @@ This function should only modify configuration layer settings."
    '(
      (bitwarden :location (recipe :fetcher github :repo "yskkin/emacs-bitwarden" :branch "feat/custom_field"))
      copilot-chat
-     ddskk
      org-gcal
      (org-gtasks :location (recipe :fetcher sourcehut :repo "jmasson/org-gtasks"))
      todoist
