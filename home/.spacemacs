@@ -41,9 +41,9 @@ This function should only modify configuration layer settings."
      auto-completion
      better-defaults
      csv
+     claude-code
      (emacs-lisp :variables emacs-lisp-format-on-save nil)
      git
-     github-copilot
      html
      ivy
      japanese
@@ -90,7 +90,6 @@ This function should only modify configuration layer settings."
    dotspacemacs-additional-packages
    '(
      (bitwarden :location (recipe :fetcher github :repo "yskkin/emacs-bitwarden" :branch "feat/custom_field"))
-     copilot-chat
      org-gcal
      (org-gtasks :location (recipe :fetcher sourcehut :repo "jmasson/org-gtasks"))
      todoist
@@ -644,13 +643,6 @@ before packages are loaded."
         org-use-fast-todo-selection 'expert
         org-todo-keywords '((sequence "TODO(t)" "DOING(!)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
 
-  (with-eval-after-load 'copilot
-    (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
-    (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
-    (define-key copilot-completion-map (kbd "C-TAB") 'copilot-accept-completion-by-word)
-    (define-key copilot-completion-map (kbd "C-<tab>") 'copilot-accept-completion-by-word))
-  (add-hook 'prog-mode-hook 'copilot-mode)
-  (add-hook 'git-commit-setup-hook 'copilot-chat-insert-commit-message)
   (setq todoist-token
         (let* ((auth-sources '(macos-keychain-generic))
                (matches (auth-source-search :user "yskkin@gmail.com" :port "todoist_api_key" :require '(:secret) :max 1))
