@@ -1,4 +1,4 @@
-tap "laishulu/homebrew"
+tap "laishulu/homebrew", trusted: true if OS.mac?
 
 brew "act"
 brew "bat"
@@ -23,8 +23,8 @@ brew "homeshick"
 brew "jq"
 brew "libvterm"
 brew "lima"
-brew "macism"
-brew "mas"
+brew "macism" if OS.mac?
+brew "mas" if OS.mac?
 brew "moreutils"
 brew "nkf"
 brew "node-build"
@@ -40,6 +40,7 @@ brew "tree"
 brew "uv"
 brew "volta"
 brew "z"
+brew "zsh"
 
 cask "alacritty"
 cask "aquaskk"
@@ -55,12 +56,14 @@ cask "raycast"
 cask "uhk-agent"
 cask "warp"
 
-mas "elpy", id: 1440013765
-mas "line", id: 539883307
-mas "NAS Navigator2", id: 450664466
-mas "slack", id: 803453959
-mas "TickTick", id: 966085870
-mas "Xcode", id: 497799835
+if OS.mac?
+  mas "elpy", id: 1440013765
+  mas "line", id: 539883307
+  mas "NAS Navigator2", id: 450664466
+  mas "slack", id: 803453959
+  mas "TickTick", id: 966085870
+  mas "Xcode", id: 497799835
+end
 
 vscode "buenon.scratchpads"
 vscode "ckolkman.vscode-postgres"
