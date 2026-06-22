@@ -90,6 +90,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-additional-packages
    '(
      (bitwarden :location (recipe :fetcher github :repo "yskkin/emacs-bitwarden" :branch "feat/custom_field"))
+     direnv
      org-gcal
      (org-gtasks :location (recipe :fetcher sourcehut :repo "jmasson/org-gtasks"))
      todoist
@@ -611,6 +612,7 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
   (global-auto-revert-mode 1)
+  (direnv-mode)
   (setq-default magit-auto-revert-mode t)
   (setq-default typescript-indent-level 2)
 
